@@ -64,12 +64,16 @@ public class MainWindow extends Stage {
     		FileInputStream fis=new FileInputStream(file);
     		ByteArrayOutputStream baos= new ByteArrayOutputStream();
     		
-    		byte[] buffer= new byte[128];
+    		byte[] buffer= new byte[3];
     		int bytesview= 0;
     		while ((bytesview=fis.read(buffer))!=-1) {
-				System.out.println(bytesview);;
+				System.out.println(bytesview);
+				baos.write(buffer,0,bytesview);
 			}
-    		
+    		fis.close();
+    		baos.close();
+    		String lector=baos.toString();
+    		textPost.setText(lector);
     		
     		
 		} catch (Exception e) {
