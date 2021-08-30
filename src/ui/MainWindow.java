@@ -53,6 +53,29 @@ public class MainWindow extends Stage {
     }
     
     public void doOpenText(){
+    	FileChooser fc=new FileChooser();
+    	fc.setTitle("Abra una imagen");
+    	fc.getExtensionFilters().addAll(
+    			new ExtensionFilter("TXT","*.txt")
+    	);
+    	File file=fc.showOpenDialog(this);
+    	
+    	try {
+    		FileInputStream fis=new FileInputStream(file);
+    		ByteArrayOutputStream baos= new ByteArrayOutputStream();
+    		
+    		byte[] buffer= new byte[128];
+    		int bytesview= 0;
+    		while ((bytesview=fis.read(buffer))!=-1) {
+				System.out.println(bytesview);;
+			}
+    		
+    		
+    		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
     	
     }
     
