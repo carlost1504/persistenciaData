@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -43,7 +44,33 @@ public class MainWindow extends Stage {
     }
 
     public void init() {
-
+    	openImage.setOnAction(event->{
+    		doOpenImage();
+    	});
+    	openText.setOnAction(event->{
+    		doOpenText();
+    	});
+    }
+    
+    public void doOpenText(){
+    	
+    }
+    
+    public void doOpenImage(){
+    	FileChooser fc=new FileChooser();
+    	fc.setTitle("Abra una imagen");
+    	fc.getExtensionFilters().addAll(
+    			new ExtensionFilter("PNG","*.png"),
+    			new ExtensionFilter("JPG","*.jpg")
+    	);
+    	File file=fc.showOpenDialog(this);
+    	System.out.println(file.exists());
+    	
+    	if(file!=null) {
+    		
+    		Image image=new Image("file:"+file.getAbsolutePath());
+    		imagePost.setImage(image);
+    	}
     }
 
 }
